@@ -10,6 +10,12 @@ app1 DIR: APP1 애플리케이션 담당하는 컨테이너 및 Dokcerfile과 in
 
 app2 DIR: APP2(DB와 연동) 애플리케이션 담당하는 컨테이너 및 Dokcerfile과 test.php파일
 
+Dockerfile을 이용한 이미지 생성 방법
+-> 해당 디렉토리 경로에서 다음 도커 명령어 실행
+
+docker build -t [원하는image 이름] .
+
+
 
 컨테이너 생성시 소스 코드 수정을 위한 볼륨 마운트 방법
 -> 커스텀 네트워크 사용
