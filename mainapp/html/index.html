@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+  
+  
+    <!-- dataTable css파일 CDN으로 추가 -->
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css " rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css" rel="stylesheet" />
+<body>
+    <div id="mainapp">
+        this is main app<br><br>
+        <button onclick="app1()">app1 calling</button>
+        <button onclick="app2()">app2 calling</button>        
+
+        <div id="app1div">
+            app1 comming ...
+        </div>
+        <div id="app2div">
+            app2 comming ...
+        </div>
+        <br>
+        main app end
+    </div>
+</body>
+<script>
+    function app1() {
+        $.ajax({
+            type: "GET",
+            timeout: 3000,
+            url: "/api/index.php",
+            //error: function(xhr, statusText) {$( ".side_bar_attributes" ).show();},
+            success: function (data2) { $("#app1div").html(data2); }
+        }
+        );
+    }
+
+    function app2() {
+        $.ajax({
+            type: "GET",
+            timeout: 3000,
+            url: "/db/test.php",
+            //error: function(xhr, statusText) {$( ".side_bar_attributes" ).show();},
+            success: function (result) {
+                var item = JSON.parse(result);
+                console.log(item);
+                $("#app2div").html("<div id='app2div'>"+
+                    "name: "+
+                    item[0]['user_name']+" | "+
+                    "pwd: "+
+                    item[0]['user_pwd']+'<br>'+
+                    "name: "+
+                    item[1]['user_name']+" | "+
+                    "pwd: "+
+                    item[1]['user_pwd']+
+                    "</div>");
+                
+            }
+        });
+    }
+</script>
+
+</html>
